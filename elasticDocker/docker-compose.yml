@@ -1,0 +1,38 @@
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.17.0
+    container_name: es01
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "xpack.security.enabled=false"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+  psql:
+    image: postgres:17.2
+    container_name: psql
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - 5432:5432
+    volumes:
+      - psql_data:/var/lib/postgresql/data
+
+volumes:
+  data01:
+    driver: local
+  psql_data:
+    driver: local
+
+networks:
+  elastic:
+    driver: bridge
