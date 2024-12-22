@@ -7,11 +7,19 @@
 В env проекта опционально можно передавать переменные:
 
 ES_TITLE - название индекса elastic search
+
 ES_ADDRESS - адресс elastic search
+
 ES_PORT - порт elastic search
 
+
+
 PSQL_TITLE - название таблицы в postgres
+
 PSQL_ADDRESS - адрес postrgess
+
 PSQL_PORT - порт postgres
+
 PSQL_USER - имя пользователя postgres
+
 PSQL_PASSWORD - пароль пользователя postgres
