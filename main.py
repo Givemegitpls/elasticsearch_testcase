@@ -6,6 +6,10 @@ from typing import Optional
 import psycopg2
 import os
 
+app = FastAPI()
+if __name__ == '__main__':
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0")
 
 es_title = os.environ.get('ES_TITLE', "search-index")
 sql_table_title = os.environ.get('PSQL_TITLE', "messages")
@@ -41,7 +45,6 @@ def call_es():
         return ES
 
 
-app = FastAPI()
 
 @app.get("/init_csv")
 def init_csv() -> str:
